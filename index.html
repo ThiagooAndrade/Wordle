@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wordle</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#14161c",
+                            wordleLogo: "#f9ff00",
+                            button: "#818384",
+                            wrong: "#585858",
+                            right: "#538d4e",
+                            displaced: "#b59f3b",
+                        },
+
+                        fontFamily: {
+                            principal: ["Inter", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body class="bg-primary">
+        <header class="">
+            <span
+                class="my-3 ml-10 w-[60px] h-[60px] bg-wordleLogo flex justify-center items-center text-2xl text-principal font-bold"
+                >W</span
+            >
+        </header>
+        <hr />
+        <main
+            class="h-full w-full flex flex-col items-center text-2xl text-white font-bold font-principal"
+        >
+            <section class="w-full flex flex-col items-center gap-[5px] pt-14">
+                <div class="flex gap-[5px]">
+                    <div
+                        id="firstRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="firstRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="firstRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="firstRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="firstRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+                <div class="flex gap-[5px]">
+                    <div
+                        id="secondRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="secondRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="secondRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="secondRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="secondRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+                <div class="flex gap-[5px]">
+                    <div
+                        id="thirdRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="thirdRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="thirdRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="thirdRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="thirdRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+                <div class="flex gap-[5px]">
+                    <div
+                        id="fourthRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fourthRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fourthRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fourthRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fourthRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+                <div class="flex gap-[5px]">
+                    <div
+                        id="fifthRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fifthRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fifthRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fifthRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="fifthRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+                <div class="flex gap-[5px]">
+                    <div
+                        id="sixthRowIndex0"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="sixthRowIndex1"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="sixthRowIndex2"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="sixthRowIndex3"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                    <div
+                        id="sixthRowIndex4"
+                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
+                    ></div>
+                </div>
+            </section>
+            <section
+                class="flex flex-col text-xl gap-[4px] max-w-[600px] mx-[50px] w-full pt-20 px-5"
+            >
+                <div class="flex justify-center gap-1 items-center">
+                    <button
+                        id="Q"
+                        class="bg-button w-[60px] h-[60px] hover:bg-green-700 caractere"
+                    >
+                        Q
+                    </button>
+                    <button
+                        id="W"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        W
+                    </button>
+                    <button
+                        id="E"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        E
+                    </button>
+                    <button
+                        id="R"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        R
+                    </button>
+                    <button
+                        id="T"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        T
+                    </button>
+                    <button
+                        id="Y"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        Y
+                    </button>
+                    <button
+                        id="U"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        U
+                    </button>
+                    <button
+                        id="I"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        I
+                    </button>
+                    <button
+                        id="O"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        O
+                    </button>
+                    <button
+                        id="P"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        P
+                    </button>
+                </div>
+                <div class="flex justify-center gap-[4px] items-center">
+                    <button
+                        id="A"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        A
+                    </button>
+                    <button
+                        id="S"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        S
+                    </button>
+                    <button
+                        id="D"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        D
+                    </button>
+                    <button
+                        id="F"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        F
+                    </button>
+                    <button
+                        id="G"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        G
+                    </button>
+                    <button
+                        id="H"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        H
+                    </button>
+                    <button
+                        id="J"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        J
+                    </button>
+                    <button
+                        id="K"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        K
+                    </button>
+                    <button
+                        id="L"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        L
+                    </button>
+                </div>
+                <div class="flex justify-center items-center gap-1">
+                    <button class="bg-button w-[85px] h-[60px] enter">
+                        ENTER
+                    </button>
+                    <button
+                        id="Z"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        Z
+                    </button>
+                    <button
+                        id="X"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        X
+                    </button>
+                    <button
+                        id="C"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        C
+                    </button>
+                    <button
+                        id="V"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        V
+                    </button>
+                    <button
+                        id="B"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        B
+                    </button>
+                    <button
+                        id="N"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        N
+                    </button>
+                    <button
+                        id="M"
+                        class="bg-button w-[60px] h-[60px] caractere"
+                    >
+                        M
+                    </button>
+                    <button
+                        class="bg-button w-[60px] h-[60px] flex justify-center items-center apagar"
+                    >
+                        <ion-icon
+                            class="apagar"
+                            name="backspace-outline"
+                        ></ion-icon>
+                    </button>
+                </div>
+            </section>
+        </main>
+        <script type="module" src="script.js"></script>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+        ></script>
+    </body>
+</html>

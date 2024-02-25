@@ -1,0 +1,7 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.excludeGitIgnore": false,
+    "explorer.autoReveal": true,
+    "explorer.compactFolders": true,
+    "symbols.hidesExplorerArrows": false
+}
