@@ -10,352 +10,61 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto&display=swap"
             rel="stylesheet"
         />
-        <script src="https://cdn.tailwindcss.com"></script>
-
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: "#14161c",
-                            wordleLogo: "#f9ff00",
-                            button: "#818384",
-                            wrong: "#585858",
-                            right: "#538d4e",
-                            displaced: "#b59f3b",
-                        },
-
-                        fontFamily: {
-                            principal: ["Inter", "sans-serif"],
-                        },
-                    },
-                },
-            };
-        </script>
+        <link rel="stylesheet" href="style.css" />
     </head>
-    <body class="bg-primary">
-        <header class="">
-            <span
-                class="my-3 ml-10 w-[60px] h-[60px] bg-wordleLogo flex justify-center items-center text-2xl text-principal font-bold"
-                >W</span
-            >
+    <body>
+        <header>
+            <span>W</span>
         </header>
         <hr />
-        <main
-            class="h-full w-full flex flex-col items-center text-2xl text-white font-bold font-principal"
-        >
-            <section class="w-full flex flex-col items-center gap-[5px] pt-14">
-                <div class="flex gap-[5px]">
-                    <div
-                        id="firstRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="firstRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="firstRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="firstRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="firstRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
+        <main>
+            <div id="game"></div>
+
+            <section class="keyboard">
+                <div class="keyboard-row">
+                    <button class="button" value="Q">Q</button>
+                    <button class="button" value="W">W</button>
+                    <button class="button" value="E">E</button>
+                    <button class="button" value="R">R</button>
+                    <button class="button" value="T">T</button>
+                    <button class="button" value="Y">Y</button>
+                    <button class="button" value="U">U</button>
+                    <button class="button" value="I">I</button>
+                    <button class="button" value="O">O</button>
+                    <button class="button" value="P">P</button>
                 </div>
-                <div class="flex gap-[5px]">
-                    <div
-                        id="secondRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="secondRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="secondRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="secondRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="secondRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
+                <div class="keyboard-row">
+                    <button class="button" value="A">A</button>
+                    <button class="button" value="S">S</button>
+                    <button class="button" value="D">D</button>
+                    <button class="button" value="F">F</button>
+                    <button class="button" value="G">G</button>
+                    <button class="button" value="H">H</button>
+                    <button class="button" value="J">J</button>
+                    <button class="button" value="K">K</button>
+                    <button class="button" value="L">L</button>
                 </div>
-                <div class="flex gap-[5px]">
-                    <div
-                        id="thirdRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="thirdRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="thirdRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="thirdRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="thirdRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                </div>
-                <div class="flex gap-[5px]">
-                    <div
-                        id="fourthRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fourthRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fourthRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fourthRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fourthRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                </div>
-                <div class="flex gap-[5px]">
-                    <div
-                        id="fifthRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fifthRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fifthRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fifthRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="fifthRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                </div>
-                <div class="flex gap-[5px]">
-                    <div
-                        id="sixthRowIndex0"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="sixthRowIndex1"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="sixthRowIndex2"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="sixthRowIndex3"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                    <div
-                        id="sixthRowIndex4"
-                        class="flex justify-center items-center text-sm lg:text-2xl text-white text-principal font-bold w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] border-[#3b3c3f] border-[1px] ring-1 ring-[#1e2028]"
-                    ></div>
-                </div>
-            </section>
-            <section
-                class="flex flex-col text-xl gap-[4px] max-w-[600px] mx-[50px] w-full pt-20 px-5"
-            >
-                <div class="flex justify-center gap-1 items-center">
-                    <button
-                        id="Q"
-                        class="bg-button w-[60px] h-[60px] hover:bg-green-700 caractere"
-                    >
-                        Q
-                    </button>
-                    <button
-                        id="W"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        W
-                    </button>
-                    <button
-                        id="E"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        E
-                    </button>
-                    <button
-                        id="R"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        R
-                    </button>
-                    <button
-                        id="T"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        T
-                    </button>
-                    <button
-                        id="Y"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        Y
-                    </button>
-                    <button
-                        id="U"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        U
-                    </button>
-                    <button
-                        id="I"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        I
-                    </button>
-                    <button
-                        id="O"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        O
-                    </button>
-                    <button
-                        id="P"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        P
-                    </button>
-                </div>
-                <div class="flex justify-center gap-[4px] items-center">
-                    <button
-                        id="A"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        A
-                    </button>
-                    <button
-                        id="S"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        S
-                    </button>
-                    <button
-                        id="D"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        D
-                    </button>
-                    <button
-                        id="F"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        F
-                    </button>
-                    <button
-                        id="G"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        G
-                    </button>
-                    <button
-                        id="H"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        H
-                    </button>
-                    <button
-                        id="J"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        J
-                    </button>
-                    <button
-                        id="K"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        K
-                    </button>
-                    <button
-                        id="L"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        L
-                    </button>
-                </div>
-                <div class="flex justify-center items-center gap-1">
-                    <button class="bg-button w-[85px] h-[60px] enter">
+                <div class="keyboard-row">
+                    <button class="button-enter button" value="ENTER">
                         ENTER
                     </button>
-                    <button
-                        id="Z"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        Z
-                    </button>
-                    <button
-                        id="X"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        X
-                    </button>
-                    <button
-                        id="C"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        C
-                    </button>
-                    <button
-                        id="V"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        V
-                    </button>
-                    <button
-                        id="B"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        B
-                    </button>
-                    <button
-                        id="N"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        N
-                    </button>
-                    <button
-                        id="M"
-                        class="bg-button w-[60px] h-[60px] caractere"
-                    >
-                        M
-                    </button>
-                    <button
-                        class="bg-button w-[60px] h-[60px] flex justify-center items-center apagar"
-                    >
+                    <button class="button" value="Z">Z</button>
+                    <button class="button" value="X">X</button>
+                    <button class="button" value="C">C</button>
+                    <button class="button" value="V">V</button>
+                    <button class="button" value="B">B</button>
+                    <button class="button" value="N">N</button>
+                    <button class="button" value="M">M</button>
+                    <button class="button-erase button">
                         <ion-icon
-                            class="apagar"
+                            class="erase"
                             name="backspace-outline"
                         ></ion-icon>
                     </button>
                 </div>
             </section>
         </main>
+
         <script type="module" src="script.js"></script>
         <script
             type="module"

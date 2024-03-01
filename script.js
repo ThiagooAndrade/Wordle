@@ -1,174 +1,190 @@
-import rows from "./rowsObject.js";
 import palavrasSecretas from "./palavrasSecretas.js";
 
-function getRandomArbitrary(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+const state = {
+    secret: palavrasSecretas[
+        Math.floor(Math.random() * palavrasSecretas.length)
+    ],
+    grid: Array(6)
+        .fill()
+        .map(() => Array(5).fill("")),
+    currentRow: 0,
+    currentCol: 0,
+};
+
+function updateGrid() {
+    for (let line = 0; line < state.grid.length; line++) {
+        for (let column = 0; column < state.grid[line].length; column++) {
+            const box = document.getElementById(`box${line}${column}`);
+            box.textContent = state.grid[line][column];
+        }
+    }
 }
 
-const numRandom = getRandomArbitrary(0, 142);
+function drawBox(container, row, col, letter = "") {
+    const box = document.createElement("div");
+    box.className = "box";
+    box.id = `box${row}${col}`;
+    box.textContent = letter;
 
-let palavraSecreta = palavrasSecretas[numRandom].toUpperCase();
-let arrPalavraSecreta = palavraSecreta.split("");
+    container.appendChild(box);
+    return box;
+}
 
-let respostaJogador = [];
+function drawGrid(container) {
+    const grid = document.createElement("div");
+    grid.className = "grid";
 
-let linhaAtual = 0;
-// const colorGray = "585858";
-// const colorGreen = "538d4e";
-// const colorYellow = "b59f3b";
-let auxColunaAtual = 0;
-let colunaAtual = `index${auxColunaAtual}`;
-let numberOfLetters = 0;
-
-document.addEventListener("click", (event) => {
-    const element = event.target;
-
-    // if (element.classList.contains("")) {
-    // }
-    if (element.classList.contains("caractere")) {
-        if (numberOfLetters <= 5) {
-            inputLetter(element.innerText);
-
-            console.log(element.innerText);
+    for (let line = 0; line < 6; line++) {
+        for (let column = 0; column < 5; column++) {
+            drawBox(grid, line, column);
         }
-        return;
-    } else if (element.classList.contains("enter")) {
-        if (numberOfLetters == 5) {
-            let repetidas = 0;
-            if (verificaSePalavraExiste(repetidas)) {
-                atualizaCorDosQuadrados();
-                atualizaCorDoTeclado();
-                if (verificaVitoria()) {
-                    setTimeout(() => {
-                        window.alert("Você acertou!");
-                    }, 1000);
-                    return;
-                }
-                numberOfLetters = 0;
-                linhaAtual++;
-                auxColunaAtual = 0;
-                colunaAtual = `index${auxColunaAtual}`;
-                respostaJogador = [];
-            }
-        } else {
-            window.alert("Preencha todas as letras");
-        }
-        if (linhaAtual == 6) {
-            vocePerdeu();
-        }
-        return;
-    } else if (element.classList.contains("apagar")) {
-        if (numberOfLetters > 0) {
-            numberOfLetters--;
-            auxColunaAtual--;
-            colunaAtual = `index${auxColunaAtual}`;
-            apagaLetra();
-        }
-
-        return;
     }
-});
 
-function verificaSePalavraExiste(repetidas) {
-    for (let letra = 0; letra < arrPalavraSecreta.length; letra++) {
-        for (let index = letra + 1; index < arrPalavraSecreta.length; index++) {
-            if (respostaJogador[letra] == respostaJogador[index]) {
-                repetidas++;
+    container.appendChild(grid);
+}
+
+function getCurrentWord() {
+    return state.grid[state.currentRow].reduce((prev, curr) => prev + curr);
+}
+
+function registerKeyboardClicksEvents() {
+    document.addEventListener("click", (event) => {
+        const element = event.target;
+        if (element.classList.contains("button-enter")) {
+            if (state.currentCol === 5) {
+                const word = getCurrentWord();
+                console.log(word);
+                if (isWordValid(word)) {
+                    revealWord(word);
+                    state.currentRow++;
+                    state.currentCol = 0;
+                } else {
+                    alert("Essa palavra não é válida");
+                }
+                updateGrid();
+            }
+            return;
+        }
+        if (
+            element.classList.contains("button-erase") ||
+            element.classList.contains("erase")
+        ) {
+            removeLetter();
+            updateGrid();
+            return;
+        }
+
+        if (element.classList.contains("button")) {
+            const elementValue = element.textContent.toLowerCase();
+            if (isLetter(elementValue)) {
+                console.log(elementValue);
+                addLetter(elementValue);
+            }
+            updateGrid();
+        }
+    });
+}
+
+function registerKeyboardEvents() {
+    document.body.onkeydown = (event) => {
+        let key = event.key;
+
+        if (key === "Enter") {
+            if (state.currentCol === 5) {
+                const word = getCurrentWord();
+                if (isWordValid(word)) {
+                    revealWord(word);
+                    state.currentRow++;
+                    state.currentCol = 0;
+                } else {
+                    alert("Essa palavra não é válida");
+                }
             }
         }
-        if (repetidas >= 2) {
-            window.alert("Escreva outra palavra, esta palavra não existe!");
+        if (key === "Backspace") {
+            removeLetter();
+        }
+        if (isLetter(key)) {
+            key = event.key.toLowerCase();
+            addLetter(key);
+        }
+
+        updateGrid();
+    };
+}
+
+function isWordValid(word) {
+    let repeats = 0;
+    const arrWord = word.split("");
+
+    for (let letter = 0; letter < 6; letter++) {
+        for (let index = letter + 1; index < 6; index++) {
+            if (arrWord[letter] == arrWord[index]) {
+                repeats++;
+            }
+        }
+        if (repeats >= 2) {
             return false;
         }
-        repetidas = 0;
+        repeats = 0;
     }
     return true;
 }
 
-function vocePerdeu() {
-    return window.alert("Você perdeu!");
-}
+function revealWord(guess) {
+    const row = state.currentRow;
+    const animation_duration = 500;
+    for (let index = 0; index < 5; index++) {
+        const box = document.getElementById(`box${row}${index}`);
+        const letter = box.textContent;
 
-function inputLetter(letter) {
-    rows[linhaAtual][`${colunaAtual}`].innerText = letter;
-    numberOfLetters++;
-    auxColunaAtual++;
-    colunaAtual = `index${auxColunaAtual}`;
-    if (respostaJogador.length < 5) {
-        respostaJogador.push(letter);
-    }
-}
-
-function verificaVitoria() {
-    let tentativa = respostaJogador.join("");
-    if (tentativa == palavraSecreta) {
-        return true;
-    }
-    return false;
-}
-
-function apagaLetra() {
-    rows[linhaAtual][`${colunaAtual}`].innerText = "";
-    respostaJogador.pop();
-}
-
-function atualizaCorDoTeclado() {
-    let elemento;
-    for (let index = 0; index < arrPalavraSecreta.length; index++) {
-        elemento = document.getElementById(`${respostaJogador[index]}`);
-        if (
-            arrPalavraSecreta.includes(respostaJogador[index]) &&
-            !elemento.classList.contains("bg-right")
-        ) {
-            elemento.classList.add("bg-right");
-            continue;
-        }
-        if (
-            !arrPalavraSecreta.includes(respostaJogador[index]) &&
-            !elemento.classList.contains("bg-wrong")
-        ) {
-            document
-                .getElementById(`${respostaJogador[index]}`)
-                .classList.add("bg-wrong");
-        }
-    }
-}
-
-function atualizaCorDosQuadrados() {
-    let colunaAtual;
-    let auxColunaAtual;
-    let arrLetrasJogador = [];
-    let quantidadeDeElementos;
-
-    for (let letra = 0; letra < arrPalavraSecreta.length; letra++) {
-        auxColunaAtual = letra;
-        colunaAtual = `index${auxColunaAtual}`;
-
-        rows[linhaAtual][colunaAtual].classList.add("bg-wrong");
-
-        quantidadeDeElementos = arrPalavraSecreta.filter(
-            (elemento) => elemento == respostaJogador[letra]
-        ).length;
-        console.log(quantidadeDeElementos);
-
-        if (respostaJogador[letra] == arrPalavraSecreta[letra]) {
-            rows[linhaAtual][colunaAtual].classList.remove("bg-wrong");
-            rows[linhaAtual][colunaAtual].classList.add("bg-right");
-        } else if (quantidadeDeElementos > 1) {
-            rows[linhaAtual][colunaAtual].classList.remove("bg-wrong");
-            rows[linhaAtual][colunaAtual].classList.add("bg-displaced");
-        } else {
-            if (!arrPalavraSecreta.includes(respostaJogador[letra])) {
-                continue;
-            }
-            if (arrLetrasJogador.includes(respostaJogador[letra])) {
-                continue;
+        setTimeout(() => {
+            if (letter === state.secret[index]) {
+                box.classList.add("right");
+            } else if (state.secret.includes(letter)) {
+                box.classList.add("wrong");
             } else {
-                rows[linhaAtual][colunaAtual].classList.remove("bg-wrong");
-                rows[linhaAtual][colunaAtual].classList.add("bg-displaced");
+                box.classList.add("empty");
             }
-        }
+        }, ((index + 1) * animation_duration) / 2);
 
-        arrLetrasJogador.push(respostaJogador[letra]);
+        box.classList.add("animated");
+        box.style.animationDelay = `${(index * animation_duration) / 2}ms`;
     }
+
+    const isWinner = state.secret === guess;
+    const isGameOver = state.currentRow === 5;
+
+    setTimeout(() => {
+        if (isWinner) {
+            alert("Congratulations!");
+        } else if (isGameOver) {
+            alert(`Better luck next time! the word was ${state.secret}`);
+        }
+    }, 3 * animation_duration);
 }
+
+function isLetter(key) {
+    return key.length === 1 && key.match(/[a-z]/i);
+}
+
+function addLetter(letter) {
+    if (state.currentCol === 5) return;
+    state.grid[state.currentRow][state.currentCol] = letter;
+    state.currentCol++;
+}
+
+function removeLetter() {
+    if (state.currentCol === 0) return;
+    state.grid[state.currentRow][state.currentCol - 1] = "";
+    state.currentCol--;
+}
+
+function startup() {
+    const game = document.getElementById("game");
+    drawGrid(game);
+    registerKeyboardEvents();
+    registerKeyboardClicksEvents();
+}
+
+startup();
